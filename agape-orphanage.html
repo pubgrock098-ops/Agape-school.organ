@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>AGAPE Orphanage & School — Pocharam, Telangana</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky:    #E8F4F0;
+    --deep:   #1A3A2F;
+    --mid:    #2D6A52;
+    --leaf:   #4A9470;
+    --gold:   #C9A24A;
+    --cream:  #FAF7F2;
+    --warm:   #F0EBE1;
+    --ink:    #1C1C1A;
+    --muted:  #6B7068;
+    --white:  #FFFFFF;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: env(safe-area-inset-top, 0px);
+    left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(26,58,47,0.95);
+    backdrop-filter: blur(8px);
+  }
+  .nav-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.25rem;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--deep);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 0 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 30%, rgba(74,148,112,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 20% 70%, rgba(201,162,74,0.1) 0%, transparent 60%);
+  }
+  .hero-art {
+    position: absolute;
+    top: 0; right: 0;
+    width: 55%;
+    height: 100%;
+    opacity: 0.12;
+    background: repeating-linear-gradient(
+      -30deg,
+      var(--leaf) 0px,
+      var(--leaf) 1px,
+      transparent 1px,
+      transparent 40px
+    );
+  }
+  /* Silhouette children illustration via SVG inline */
+  .hero-illustration {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    width: 340px;
+    opacity: 0.18;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 680px;
+    padding: 0 2.5rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+  .hero-headline {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 480px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--deep);
+    padding: 0.85rem 2rem;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: #d4ae5a; }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.3);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.6); }
+
+  /* STATS STRIP */
+  .stats-strip {
+    background: var(--mid);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+  }
+  .stat {
+    padding: 2rem 1rem;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-number {
+    font-family: 'Lora', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.04em;
+    font-weight: 300;
+  }
+
+  /* SECTION BASE */
+  section { padding: 5rem 2.5rem; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  .section-header {
+    margin-bottom: 3rem;
+  }
+  .section-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--leaf);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    line-height: 1.2;
+    color: var(--deep);
+    max-width: 600px;
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--cream);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+    max-width: 440px;
+  }
+  .about-text p:first-of-type {
+    font-size: 1.15rem;
+    color: var(--ink);
+    font-family: 'Lora', serif;
+    font-style: italic;
+    line-height: 1.7;
+  }
+  .about-values {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .value-item {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  .value-icon {
+    width: 3rem;
+    height: 3rem;
+    background: var(--sky);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .value-name {
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--deep);
+    margin-bottom: 0.3rem;
+  }
+  .value-desc {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* PROGRAMS */
+  #programs {
+    background: var(--warm);
+  }
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--mid);
+  }
+  .program-card {
+    background: var(--cream);
+    padding: 2.5rem 2rem;
+    transition: background 0.25s;
+  }
+  .program-card:hover {
+    background: var(--deep);
+  }
+  .program-card:hover .program-title,
+  .program-card:hover .program-desc {
+    color: rgba(255,255,255,0.9);
+  }
+  .program-card:hover .program-num {
+    color: var(--gold);
+  }
+  .program-num {
+    font-family: 'Lora', serif;
+    font-size: 0.75rem;
+    color: var(--leaf);
+    font-style: italic;
+    margin-bottom: 1.25rem;
+    display: block;
+    transition: color 0.25s;
+  }
+  .program-title {
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    color: var(--deep);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+    font-weight: 600;
+    transition: color 0.25s;
+  }
+  .program-desc {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.7;
+    transition: color 0.25s;
+  }
+
+  /* MISSION QUOTE */
+  .mission-quote {
+    background: var(--deep);
+    padding: 5rem 2.5rem;
+    text-align: center;
+  }
+  .mission-quote blockquote {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    color: var(--white);
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 720px;
+    margin: 0 auto 1.5rem;
+  }
+  .mission-quote cite {
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  /* GALLERY MOSAIC */
+  #gallery {
+    background: var(--cream);
+    padding-bottom: 3rem;
+  }
+  .mosaic {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 200px 200px;
+    gap: 6px;
+    margin-top: 2rem;
+  }
+  .mosaic-cell {
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .mosaic-cell:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .mosaic-cell:nth-child(5) { grid-column: span 2; }
+
+  .mosaic-fill {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    position: relative;
+  }
+  .mosaic-cell:nth-child(1) .mosaic-fill { background: linear-gradient(135deg, #2D6A52 0%, #1A3A2F 100%); font-size: 1.4rem; color: rgba(255,255,255,0.8); }
+  .mosaic-cell:nth-child(2) .mosaic-fill { background: linear-gradient(135deg, #4A9470 0%, #2D6A52 100%); }
+  .mosaic-cell:nth-child(3) .mosaic-fill { background: linear-gradient(135deg, #C9A24A 0%, #a07a28 100%); }
+  .mosaic-cell:nth-child(4) .mosaic-fill { background: linear-gradient(135deg, #1A3A2F 0%, #0d2018 100%); }
+  .mosaic-cell:nth-child(5) .mosaic-fill { background: linear-gradient(90deg, #4A9470 0%, #1A3A2F 100%); }
+
+  .gallery-emoji { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+
+  /* DONATE / CTA */
+  #donate {
+    background: var(--sky);
+  }
+  .donate-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .donate-text .section-title { margin-bottom: 1rem; }
+  .donate-text p {
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 400px;
+  }
+  .donate-amounts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .amount-btn {
+    border: 1.5px solid var(--mid);
+    background: transparent;
+    color: var(--deep);
+    padding: 0.85rem;
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .amount-btn:hover, .amount-btn.active {
+    background: var(--mid);
+    color: var(--white);
+    border-color: var(--mid);
+  }
+  .donate-impact {
+    background: var(--deep);
+    padding: 2.5rem;
+    color: var(--white);
+  }
+  .impact-title {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .impact-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    align-items: flex-start;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.75);
+  }
+  .impact-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-top: 0.45rem;
+    flex-shrink: 0;
+  }
+
+  /* CONTACT */
+  #contact {
+    background: var(--deep);
+  }
+  #contact .section-label { color: var(--gold); }
+  #contact .section-title { color: var(--white); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+  }
+  .contact-info { color: rgba(255,255,255,0.7); }
+  .contact-detail {
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .contact-icon { font-size: 1.2rem; line-height: 1.4; }
+  .contact-detail-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+  .contact-detail-value {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-form input,
+  .contact-form textarea {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--white);
+    padding: 0.85rem 1rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder { color: rgba(255,255,255,0.35); }
+  .contact-form input:focus,
+  .contact-form textarea:focus { border-color: var(--gold); }
+  .contact-form textarea { resize: vertical; min-height: 120px; }
+
+  /* FOOTER */
+  footer {
+    background: #0d1f19;
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+  }
+  .footer-text {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+  }
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    section { padding: 3.5rem 1.25rem; }
+    .stats-strip { grid-template-columns: repeat(2, 1fr); }
+    .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .about-grid,
+    .donate-inner,
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .programs-grid { grid-template-columns: 1fr; }
+    .mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .mosaic-cell:nth-child(1) { grid-column: span 2; }
+    .mosaic-cell:nth-child(5) { grid-column: span 2; }
+    footer { flex-direction: column; align-items: flex-start; }
+    .hero-content { padding: 0 1.25rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">AGAPE</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#donate">Donate</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-art"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Pocharam Village, Telangana &nbsp;·&nbsp; Est. with Love</p>
+    <h1 class="hero-headline">
+      Every child deserves a <em>future</em> worth dreaming about.
+    </h1>
+    <p class="hero-sub">
+      AGAPE Orphanage &amp; School provides shelter, education, and unconditional love to children who need it most — right here in Pocharam, Telangana.
+    </p>
+    <div class="hero-actions">
+      <a href="#donate" class="btn-primary">Support a Child</a>
+      <a href="#about" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat">
+    <span class="stat-number">80+</span>
+    <span class="stat-label">Children in our care</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">3</span>
+    <span class="stat-label">Meals served daily</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">100%</span>
+    <span class="stat-label">School enrollment</span>
+  </div>
+  <div class="stat">
+    <span class="stat-number">∞</span>
+    <span class="stat-label">Love given freely</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-header">
+          <span class="section-label">Who We Are</span>
+          <h2 class="section-title">A home built on faith, care, and community</h2>
+        </div>
+        <p>
+          AGAPE — the Greek word for unconditional love — is more than our name. It is the foundation on which every child at our orphanage and school stands.
+        </p>
+        <p>
+          Located in the Sanskruti Township, Pocharam Village, we provide a safe, nurturing home to orphaned and underprivileged children. Our school equips every child with quality education, skills, and the confidence to step into the world.
+        </p>
+        <p>
+          We believe no child should grow up feeling unseen. Here, every child is known by name, celebrated on their birthday, and cheered on at every milestone.
+        </p>
+      </div>
+      <div class="about-values">
+        <div class="value-item">
+          <div class="value-icon">🙏</div>
+          <div>
+            <div class="value-name">Faith</div>
+            <div class="value-desc">Rooted in hope and guided by purpose, we serve every child with compassion and integrity.</div>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">📚</div>
+          <div>
+            <div class="value-name">Education</div>
+            <div class="value-desc">From alphabets to aspirations — our school gives every child the tools to build their own future.</div>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🤝</div>
+          <div>
+            <div class="value-name">Community</div>
+            <div class="value-desc">Our children grow within a family — with caregivers, teachers, and volunteers who truly show up.</div>
+          </div>
+        </div>
+        <div class="value-item">
+          <div class="value-icon">🌱</div>
+          <div>
+            <div class="value-name">Dignity</div>
+            <div class="value-desc">Every child here is treated with respect, housed with care, and loved without conditions.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title">Programs that shape whole children, not just students</h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="programs-grid">
+      <div class="program-card">
+        <span class="program-num">Home & Care</span>
+        <h3 class="program-title">Safe Residential Home</h3>
+        <p class="program-desc">Clean, comfortable living spaces with nutritious food, medical care, and a warm community. Every child has a bed, belongings, and belonging.</p>
+      </div>
+      <div class="program-card">
+        <span class="program-num">Learning</span>
+        <h3 class="program-title">AGAPE School</h3>
+        <p class="program-desc">Formal schooling from primary level with trained teachers, books, uniforms, and a curriculum that nurtures curiosity alongside knowledge.</p>
+      </div>
+      <div class="program-card">
+        <span class="program-num">Enrichment</span>
+        <h3 class="program-title">Arts & Life Skills</h3>
+        <p class="program-desc">Music, drawing, sports, cooking, and leadership programs that go beyond the classroom — growing confidence, creativity, and character.</p>
+      </div>
+      <div class="program-card">
+        <span class="program-num">Health</span>
+        <h3 class="program-title">Medical & Wellness</h3>
+        <p class="program-desc">Regular health check-ups, vaccinations, dental care, and emotional wellbeing support so every child grows up healthy in mind and body.</p>
+      </div>
+      <div class="program-card">
+        <span class="program-num">Future</span>
+        <h3 class="program-title">Vocational Guidance</h3>
+        <p class="program-desc">For older children — career counselling, interview preparation, and connections to higher education opportunities across Telangana.</p>
+      </div>
+      <div class="program-card">
+        <span class="program-num">Community</span>
+        <h3 class="program-title">Volunteer &amp; Outreach</h3>
+        <p class="program-desc">Welcoming individuals, corporates, and groups to visit, teach, celebrate, and walk alongside our children in their journey.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION QUOTE -->
+<div class="mission-quote">
+  <blockquote>
+    "We cannot do great things on this Earth, only small things with great love."
+  </blockquote>
+  <cite>Mother Teresa — the spirit behind AGAPE</cite>
+</div>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Life at AGAPE</span>
+      <h2 class="section-title">Moments from our home</h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="mosaic">
+      <div class="mosaic-cell">
+        <div class="mosaic-fill">
+          <div>
+            <span class="gallery-emoji">👨‍👩‍👧‍👦</span>
+            Our Family
+          </div>
+        </div>
+      </div>
+      <div class="mosaic-cell">
+        <div class="mosaic-fill">
+          <div>
+            <span class="gallery-emoji">📖</span>
+            Classroom Days
+          </div>
+        </div>
+      </div>
+      <div class="mosaic-cell">
+        <div class="mosaic-fill">
+          <div>
+            <span class="gallery-emoji">🎨</span>
+            Arts &amp; Craft
+          </div>
+        </div>
+      </div>
+      <div class="mosaic-cell">
+        <div class="mosaic-fill">
+          <div>
+            <span class="gallery-emoji">⚽</span>
+            Sports &amp; Play
+          </div>
+        </div>
+      </div>
+      <div class="mosaic-cell">
+        <div class="mosaic-fill">
+          <div>
+            <span class="gallery-emoji">🍽️</span>
+            Meals Together — because every meal is a celebration
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section id="donate">
+  <div class="container">
+    <div class="donate-inner">
+      <div class="donate-text">
+        <div class="section-header">
+          <span class="section-label">Give</span>
+          <h2 class="section-title">Your gift changes a child's story</h2>
+        </div>
+        <p>
+          Every rupee donated to AGAPE goes directly into the lives of children — their food, their books, their care. No overhead. No middlemen. Just love, delivered.
+        </p>
+        <div class="donate-amounts">
+          <button class="amount-btn">₹500</button>
+          <button class="amount-btn active">₹1,000</button>
+          <button class="amount-btn">₹2,500</button>
+          <button class="amount-btn">₹5,000</button>
+          <button class="amount-btn">₹10,000</button>
+          <button class="amount-btn">Other</button>
+        </div>
+        <a href="#contact" class="btn-primary">Donate Now</a>
+      </div>
+      <div class="donate-impact">
+        <div class="impact-title">What your donation does</div>
+        <div class="impact-item">
+          <div class="impact-dot"></div>
+          <div>₹500 feeds a child nutritious meals for an entire week</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-dot"></div>
+          <div>₹1,000 covers school stationery and books for one month</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-dot"></div>
+          <div>₹2,500 provides a child's school uniform and shoes for a year</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-dot"></div>
+          <div>₹5,000 sponsors a child's full education for one month</div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-dot"></div>
+          <div>₹10,000 covers a child's complete care — shelter, food, health, school — for one month</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Reach Out</span>
+      <h2 class="section-title">Visit us, volunteer, or just say hello</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-detail">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-detail-label">Address</div>
+            <div class="contact-detail-value">
+              AGAPE Orphanage &amp; School<br>
+              Sanskruti Township, Sy No. 10<br>
+              H. No. 12-1, Infosys Lane<br>
+              Pocharam Village Main Road<br>
+              Telangana — 500088
+            </div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-detail-label">Visiting Hours</div>
+            <div class="contact-detail-value">Mon – Sat, 10:00 AM – 5:00 PM<br>Sundays by appointment</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">💌</div>
+          <div>
+            <div class="contact-detail-label">Write to Us</div>
+            <div class="contact-detail-value">info@agapeorphanage.org</div>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-detail-label">Call Us</div>
+            <div class="contact-detail-value">+91 98765 XXXXX</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <form class="contact-form" onsubmit="return false;">
+          <input type="text" placeholder="Your name" aria-label="Name">
+          <input type="email" placeholder="Your email" aria-label="Email">
+          <input type="text" placeholder="How can you help? (volunteer, donate, visit…)" aria-label="Subject">
+          <textarea placeholder="Your message…" aria-label="Message"></textarea>
+          <button type="submit" class="btn-primary" style="align-self: flex-start;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">AGAPE</div>
+  <p class="footer-text">Orphanage &amp; School · Pocharam, Telangana 500088</p>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#donate">Donate</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Donate amount toggle
+  document.querySelectorAll('.amount-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--gold)'
+        : 'rgba(255,255,255,0.8)';
+    });
+  });
+</script>
+</body>
+</html>
